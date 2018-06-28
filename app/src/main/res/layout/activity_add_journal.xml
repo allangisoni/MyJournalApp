@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddJournalActivity">
+
+
+    <ImageView
+        android:id="@+id/journalImageView"
+        android:layout_width="match_parent"
+        android:layout_height="236dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/writing" />
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_below="@+id/journalimageView">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/journalImageView"
+        android:layout_marginTop="-3dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="My Thankful Note"
+        android:textSize="28dp" />
+
+    <EditText
+        android:id="@+id/journalEditText"
+        android:layout_width="367dp"
+        android:layout_height="177dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="121dp"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/edittextbackground"
+        android:lines="10"
+        android:maxLines="15"
+        android:minLines="5" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="175dp"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="102dp"
+        android:text="SAVE" />
+
+
+
+
+</RelativeLayout>
