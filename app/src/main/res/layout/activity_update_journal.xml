@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AddJournalActivity">
-
+    tools:context=".UpdateJournal">
 
     <ImageView
         android:id="@+id/journalImageView"
@@ -36,7 +34,7 @@
         />
 
     <EditText
-        android:id="@+id/journalEditText"
+        android:id="@+id/updatejournalEditText"
         android:layout_width="340dp"
         android:layout_height="145dp"
         android:layout_below="@+id/textView"
@@ -48,16 +46,13 @@
         android:minLines="5" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/updateButton"
         android:layout_width="175dp"
         android:layout_height="63dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:background="@color/buttonColor"
-        android:text="@string/saveButton" />
-
-
-
+        android:text="@string/updateButton" />
 
 </RelativeLayout>

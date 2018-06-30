@@ -14,7 +14,8 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".LoginActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddJournalActivity" />
-        <activity android:name=".JournalContent"></activity>
+        <activity android:name=".JournalContent" />
+        <activity android:name=".UpdateJournal"></activity>
     </application>
 
 </manifest>

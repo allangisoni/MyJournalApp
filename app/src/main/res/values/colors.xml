@@ -6,4 +6,6 @@
 
     <color name="borderColor">#949494</color>
     <color name="textColor">#262626</color>
+    <color name="buttonColor"> #b3ecff</color>
+
 </resources>

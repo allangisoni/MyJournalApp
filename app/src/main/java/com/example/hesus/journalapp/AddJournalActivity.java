@@ -78,6 +78,7 @@ public class AddJournalActivity extends AppCompatActivity {
 
             String id = mFirebaseDatabase.push().getKey();
 
+
             //creating an Artist Object
             Journal journal = new Journal(id,myJournal,date);
 
@@ -92,6 +93,7 @@ public class AddJournalActivity extends AppCompatActivity {
             Toast.makeText(this, "Journal added", Toast.LENGTH_LONG).show();
 
             startActivity(new Intent(AddJournalActivity.this, JournalContent.class));
+            finish();
 
 
         } else {

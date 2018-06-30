@@ -1,21 +1,26 @@
 package com.example.hesus.journalapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
+
     List<Journal> listdata;
+    Context context;
 
-    public MyAdapter( List<Journal> listdata) {
 
+    public MyAdapter( List<Journal> listdata,Context context) {
         this.listdata = listdata;
+        this.context = context;
     }
 
     @Override
@@ -25,9 +30,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
        Journal journal = listdata.get(position);
         holder.nameTxt.setText(journal.getJournal());
+        holder.nameTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent updateIntent = new Intent(context, UpdateJournal.class);
+
+                Journal myJournal = listdata.get(position);
+
+                updateIntent.putExtra("myjournalnote", myJournal.getJournal());
+                updateIntent.putExtra("myjournalkey",myJournal.getJournalId());
+
+                context.startActivity(updateIntent);
+
+            }
+        });
 
     }
 
@@ -35,4 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public int getItemCount() {
         return listdata.size();
     }
+
+
 }

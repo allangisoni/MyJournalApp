@@ -187,8 +187,10 @@ public class LoginActivity extends BaseActivity {
         //hideProgressDialog();
         if (user != null) {
             startActivity(new Intent(LoginActivity.this, JournalContent.class));
-        } else {
+            finish();
 
+        } else {
+          Log.d ("TAG", "UI not updates");
         }
     }
 

@@ -8,17 +8,18 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/row_main_adapter_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
 
 
         <com.codesgood.views.JustifiedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameTxt"
-            android:padding="18dp"
+            android:padding="8dp"
             android:textColor="@color/textColor"
             android:layout_alignParentLeft="true"
             android:textSize="18sp"

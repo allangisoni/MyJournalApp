@@ -101,32 +101,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.menu_signout:
-               mAuth.signOut();
-
-               googleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                   @Override
-                   public void onComplete(@NonNull Task<Void> task) {
-                       startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                   }
-               });
-
-
-            return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
 }
