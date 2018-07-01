@@ -2,7 +2,7 @@
 Journo application
 
 # Getting Started
-This app allows to express themselves by creating a journal note for any particular day.
+This app allows a user to express themselves by creating a journal note for any particular day.
 
 I have used the following components for development:
 
