@@ -9,14 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -73,7 +71,7 @@ updateButton.setOnClickListener(new View.OnClickListener() {
 
                     Toast.makeText(UpdateJournal.this, "Journal updated", Toast.LENGTH_LONG).show();
 
-                    startActivity(new Intent(UpdateJournal.this, JournalContent.class));
+                    startActivity(new Intent(UpdateJournal.this, MainActivity.class));
                 }
 
                 else {

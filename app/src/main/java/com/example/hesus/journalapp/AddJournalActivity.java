@@ -27,6 +27,8 @@ public class AddJournalActivity extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
 
+    private String id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class AddJournalActivity extends AppCompatActivity {
 
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        //id = getIntent().getStringExtra("userId");
 
         // get reference to 'Journal' node
         mFirebaseDatabase = mFirebaseInstance.getReference("Journal");
@@ -92,7 +96,7 @@ public class AddJournalActivity extends AppCompatActivity {
             //displaying a success toast
             Toast.makeText(this, "Journal added", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(AddJournalActivity.this, JournalContent.class));
+            startActivity(new Intent(AddJournalActivity.this, MainActivity.class));
             finish();
 
 

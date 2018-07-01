@@ -9,34 +9,34 @@
     <ImageView
         android:id="@+id/journalImageView"
         android:layout_width="match_parent"
-        android:layout_height="236dp"
+        android:layout_height="@dimen/add_journal_ivlayout_height"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="@dimen/add_journal_ivmargin_top"
         android:scaleType="centerCrop"
         android:src="@drawable/writing"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="@dimen/add_journal_ivmargin_bottom"/>
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
+        android:layout_height="@dimen/add_journal_tvlayout_height"
         android:layout_alignParentStart="true"
         android:layout_below="@id/journalImageView"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/add_journal_tvmargin_top"
         android:fontFamily="serif-monospace"
         android:gravity="center_horizontal"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
+        android:paddingBottom="@dimen/add_journal_tvpadding_botttom"
+        android:paddingTop="@dimen/add_journal_tvpadding_top"
         android:text="@string/addJournalTV"
-        android:textSize="28dp"
+        android:textSize="@dimen/add_journal_tvtext_size"
         />
 
     <EditText
         android:id="@+id/updatejournalEditText"
-        android:layout_width="340dp"
-        android:layout_height="145dp"
+        android:layout_width="@dimen/add_journal_etlayout_width"
+        android:layout_height="@dimen/add_journal_etlayout_height"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:background="@drawable/edittextbackground"
@@ -47,11 +47,11 @@
 
     <Button
         android:id="@+id/updateButton"
-        android:layout_width="175dp"
-        android:layout_height="63dp"
+        android:layout_width="@dimen/add_journal_buttonlayout_width"
+        android:layout_height="@dimen/add_journal_buttonlayout_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="@dimen/add_journal_buttonmargin_bottom"
         android:background="@color/buttonColor"
         android:text="@string/updateButton" />
 

@@ -2,6 +2,7 @@ package com.example.hesus.journalapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,19 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,72 +30,151 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    FloatingActionButton floatingActionButton;
+
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+    DatabaseReference databaseReference;
+
+    List<Journal> list;
+
     FirebaseAuth mAuth;
 
-    GoogleApiClient mGoogleApiClient;
+    GoogleSignInClient mGoogleSignInClient;
 
-    FirebaseUser currentUser;
-    GoogleSignInClient googleSignInClient;
+    FirebaseDatabase mFirebaseInstance;
+
+    String id;
 
 
-
-/**
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthStateListener != null) {
-            mAuth.removeAuthStateListener(mAuthStateListener);
-        }
-    }
-**/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_journal_content);
 
-        mAuth = FirebaseAuth.getInstance();
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        initUIComponents();
+
+        id = getIntent().getStringExtra("userId");
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+        //Setup Database reference
+
+        databaseReference = mFirebaseInstance.getReference();
+        databaseReference.keepSynced(true);
+
+        viewJournals();
+
+
+    }
+
+    private void initUIComponents() {
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.my_floatbutton);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click.
+                Intent addIntent = new  Intent(MainActivity.this, AddJournalActivity.class);
+
+              addIntent.putExtra("userId", id);
+
+              startActivity(addIntent);
+            }
+        });
+    }
+
+
+
+    public void viewJournals() {
+
+        databaseReference.child("Journal").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                list = new ArrayList<>();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    Journal journals = dataSnapshot1.getValue(Journal.class);
+
+                    String journal = journals.getJournal();
+
+                    journals.setJournal(journal);
+                    list.add(journals);
+
+                }
 
 /**
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null){
+                final RecyclerViewClickListener listener = new RecyclerViewClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Toast.makeText(MainActivity.this, "Position " + position, Toast.LENGTH_SHORT).show();
+                       Intent updateIntent = new Intent(MainActivity.this, UpdateJournal.class);
+                       Journal journal = (Journal) list.get(position);
+                       updateIntent.putExtra("journalnote", journal.getJournal());
+                       startActivity(updateIntent);
+                    }
+                }; **/
 
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                }
+                myAdapter = new MyAdapter(list,getApplicationContext());
+                RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(MainActivity.this);
+                recyclerView.setLayoutManager(layoutmanager);
+
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(myAdapter);
+
             }
-        };
 
 
-
-
-
-**/
-
-
-
-
-
-
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                //  Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-         currentUser = mAuth.getCurrentUser();
-        // mAuth.addAuthStateListener(mAuthStateListener);
+        switch (item.getItemId()) {
+            case R.id.menu_signout:
+                mAuth.signOut();
+
+                mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                });
+
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
-
-
 
 
 }

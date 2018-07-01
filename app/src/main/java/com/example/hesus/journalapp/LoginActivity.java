@@ -2,7 +2,6 @@ package com.example.hesus.journalapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,11 +13,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -49,19 +45,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         initUIComponents();
 
-  /**
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-             if(firebaseAuth.getCurrentUser()!= null){
-                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-             }
-            }
-        }; **/
 
-        /**Configure sign-in to request the user's ID, email address, and basic
-         profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-         **/
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -186,7 +170,9 @@ public class LoginActivity extends BaseActivity {
     public void updateUI(FirebaseUser user) {
         //hideProgressDialog();
         if (user != null) {
-            startActivity(new Intent(LoginActivity.this, JournalContent.class));
+            Intent jounoIntent = new Intent(LoginActivity.this, MainActivity.class);
+            jounoIntent.putExtra("userId", user.getUid());
+            startActivity(jounoIntent);
             finish();
 
         } else {
@@ -194,22 +180,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-/**
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        mAuth.addAuthStateListener(mAuthStateListener);
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthStateListener != null) {
-            mAuth.removeAuthStateListener(mAuthStateListener);
-        }
-    } **/
 
     @Override
     public void onStart() {
