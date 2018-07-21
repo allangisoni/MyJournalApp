@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".UpdateJournal">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/mytoolbar"/>
+
+
+    </android.support.design.widget.AppBarLayout>
 
     <ImageView
         android:id="@+id/journalImageView"
@@ -33,26 +48,35 @@
         android:textSize="@dimen/add_journal_tvtext_size"
         />
 
+    <TextView
+        android:layout_below="@id/textView"
+        android:id="@+id/tvdate"
+        android:layout_width="320dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/updatejournalEditText"
         android:layout_width="@dimen/add_journal_etlayout_width"
         android:layout_height="@dimen/add_journal_etlayout_height"
-        android:layout_below="@+id/textView"
+        android:layout_below="@id/tvdate"
         android:layout_centerHorizontal="true"
         android:background="@drawable/edittextbackground"
         android:gravity="top"
         android:lines="10"
         android:maxLines="15"
-        android:minLines="5" />
+        android:minLines="5"
+        android:padding="@dimen/journalitemlist_tvpadding"/>
 
     <Button
         android:id="@+id/updateButton"
-        android:layout_width="@dimen/add_journal_buttonlayout_width"
-        android:layout_height="@dimen/add_journal_buttonlayout_height"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/add_journal_buttonmargin_bottom"
-        android:background="@color/buttonColor"
+        android:layout_marginBottom="35dp"
+        android:background="@color/colorAccent"
         android:text="@string/updateButton" />
 
 </RelativeLayout>

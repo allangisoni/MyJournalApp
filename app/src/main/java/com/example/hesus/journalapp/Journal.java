@@ -12,7 +12,7 @@ public class Journal {
 
     private String journalId;
     public String journal;
-    public Date date;
+    public String date;
 
 
 
@@ -20,7 +20,7 @@ public class Journal {
     public Journal() {
     }
 
-    public Journal(String journalId, String journal, Date date) {
+    public Journal(String journalId, String journal, String date) {
         this.journalId = journalId;
         this.journal = journal;
         this.date = date;
@@ -38,11 +38,11 @@ public class Journal {
         this.journal = journal;
     }
 
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date = date;
     }
 

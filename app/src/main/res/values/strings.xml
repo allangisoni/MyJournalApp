@@ -5,5 +5,13 @@
     <string name="addJournalTV">Deep Thoughts</string>
     <string name="saveButton">SAVE</string>
     <string name="updateButton">UPDATE</string>
+    <string name="settings">Settings</string>
+    <string name="share">Share</string>
+    <string name="edit">Edit</string>
+
+    <string name="delete">DELETE</string>
+    <string name="journaldate">Date</string>
+    <string name="journaltext">Please write your journal entry here</string>
+
 
 </resources>

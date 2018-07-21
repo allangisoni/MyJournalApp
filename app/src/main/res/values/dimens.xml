@@ -3,7 +3,7 @@
     <!-- We will  use this to allow us to add additional padding and margin for different screen
         sizes-->
 
-    <dimen name="login_activity_margin_bottom">270dp</dimen>
+    <dimen name="login_activity_margin_bottom">120dp</dimen>
     <dimen name="login_activity_margin_end">16dp</dimen>
     <dimen name="login_activity_margin_start">16dp</dimen>
     <dimen name="login_activity_margin_top">34dp</dimen>
@@ -11,8 +11,8 @@
     <dimen name="journal_content_layout_margin">16dp</dimen>
     <dimen name="journal_content_elevation">5dp</dimen>
 
-    <dimen name="add_journal_ivlayout_height">236dp</dimen>
-    <dimen name="add_journal_ivmargin_top">0dp</dimen>
+    <dimen name="add_journal_ivlayout_height">206dp</dimen>
+    <dimen name="add_journal_ivmargin_top">10dp</dimen>
     <dimen name="add_journal_ivmargin_bottom">5dp</dimen>
     <dimen name="add_journal_tvlayout_height">71dp</dimen>
     <dimen name="add_journal_tvmargin_top">10dp</dimen>
@@ -21,16 +21,22 @@
     <dimen name="add_journal_tvtext_size">28sp</dimen>
 
     <dimen name="add_journal_etlayout_height">145dp</dimen>
-    <dimen name="add_journal_etlayout_width">340dp</dimen>
+    <dimen name="add_journal_etlayout_width">330dp</dimen>
 
     <dimen name="add_journal_buttonlayout_height">63dp</dimen>
     <dimen name="add_journal_buttonlayout_width">175dp</dimen>
-    <dimen name="add_journal_buttonmargin_bottom">32dp</dimen>
+    <dimen name="add_journal_buttonmargin_bottom">6dp</dimen>
+
 
     <dimen name="journalitemlist_layout_margin">5dp</dimen>
     <dimen name="journalitemlist_tvpadding">8dp</dimen>
     <dimen name="journalitemlist_tvtext_size">18sp</dimen>
+    <dimen name="journalitemlist_ivcalender_marginright">15dp</dimen>
 
+
+    <dimen name="padd_10">10dp</dimen>
+    <dimen name="ic_delete">40dp</dimen>
+    <dimen name="ic_calender">22dp</dimen>
 
 
 
